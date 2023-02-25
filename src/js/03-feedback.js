@@ -1,15 +1,14 @@
-// import throttle from 'lodash.throttle';
+import throttle from 'lodash.throttle';
 
 const formEl = document.querySelector('.feedback-form');
 const emailEl = document.querySelector('.feedback-form input');
 const textareaEl = document.querySelector('.feedback-form textarea');
-const submitEl = document.querySelector('.feedback-form button');
 
 const STORAGE_KEY = 'feedback-form-state';
 const formData = {};
 
-formEl.addEventListener('input', formInput);
-submitEl.addEventListener('submit', formSubmit);
+formEl.addEventListener('input', throttle(formInput, 500));
+formEl.addEventListener('submit', formSubmit);
 
 pasteFormData();
 
@@ -29,6 +28,6 @@ function formInput(e) {
 
 function formSubmit(e) {
   e.preventDefault();
-  //   localStorage.clear();
+  e.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
 }
