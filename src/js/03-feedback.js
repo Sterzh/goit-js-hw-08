@@ -14,10 +14,12 @@ pasteFormData();
 
 function pasteFormData(e) {
   const saveForm = localStorage.getItem(STORAGE_KEY);
-  const parsedSaveForm = JSON.parse(saveForm);
 
-  emailEl.value = parsedSaveForm.email;
-  textareaEl.value = parsedSaveForm.message;
+  if (saveForm) {
+    const parsedSaveForm = JSON.parse(saveForm);
+    emailEl.value = parsedSaveForm.email;
+    textareaEl.value = parsedSaveForm.message;
+  }
 }
 
 function formInput(e) {
