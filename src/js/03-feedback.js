@@ -16,8 +16,8 @@ pasteFormData();
 function pasteFormData(e) {
   if (saveForm) {
     formData = JSON.parse(saveForm);
-    emailEl.value = formData.email || '';
-    textareaEl.value = formData.message || '';
+    emailEl.value = formData.email || 0;
+    textareaEl.value = formData.message || 0;
   }
 }
 
@@ -29,6 +29,7 @@ function formInput(e) {
 function formSubmit(e) {
   e.preventDefault();
   console.log(formData);
-  e.currentTarget.reset();
+  e.target.reset();
   localStorage.removeItem(STORAGE_KEY);
+  formData = {};
 }
